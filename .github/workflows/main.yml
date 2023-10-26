@@ -10,8 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Install Dependencies
         run: npm ci
@@ -24,6 +23,10 @@ jobs:
       - name: Run ESLint
         run: npm run lint
         if: success()
+
+
+      - name: Export Contentful Data
+        run: contentful space export --space-id ${{ secrets.CONTENTFUL_SPACE_ID }} --management-token ${{ secrets.CONTENTFUL_TOKEN }} --export-dir contentful-backup
 
       - name: Build
         run: npm run build
