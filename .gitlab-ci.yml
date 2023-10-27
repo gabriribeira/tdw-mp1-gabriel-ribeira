@@ -24,7 +24,7 @@ install-dependencies:
     - npm install
 
 contentful:
-  stage: intall
+  stage: install
   script:
     - npm install -g contentful-cli
 
