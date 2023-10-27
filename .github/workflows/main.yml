@@ -28,6 +28,13 @@ jobs:
       - name: Install Contentful CLI
         run: npm install -g contentful-cli
 
+      - name: Debug Environment Variables
+        run: |
+          echo "CONTENTFUL_SPACE_ID: $CONTENTFUL_SPACE_ID"
+          echo "CONTENTFUL_MANAGEMENT_TOKEN: $CONTENTFUL_MANAGEMENT_TOKEN"
+          # Add other variables as needed
+
+
       - name: Run Prettier
         run: npm run format
         if: success()
