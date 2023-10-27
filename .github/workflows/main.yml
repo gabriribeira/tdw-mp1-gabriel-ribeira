@@ -1,6 +1,9 @@
 name: Deploy
 
 on:
+  push:
+    branches:
+      - dev
   pull_request:
     branches:
       - main
@@ -59,3 +62,12 @@ jobs:
 
       - name: Deploy
         run: npx netlify-cli deploy --site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --prod
+
+      - name: Send Notification to Microsoft Teams
+        run: |
+          COMMITTER="$(git log -1 --pretty=format:'%an')"
+          REPO="${GITHUB_REPOSITORY}"
+          BRANCH="${GITHUB_HEAD_REF}"
+          MESSAGE="Deployment to *${BRANCH}* branch of *${REPO}* by *${COMMITTER}* has completed successfully!"
+          PAYLOAD="{\"text\":\"$MESSAGE\"}"
+          curl -H "Content-Type: application/json" -d "$PAYLOAD" "${{ secrets.TEAMS_WEBHOOK_URL }}"
