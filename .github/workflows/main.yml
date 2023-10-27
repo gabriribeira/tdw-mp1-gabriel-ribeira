@@ -30,8 +30,8 @@ jobs:
 
       - name: Debug Environment Variables
         run: |
-          echo "CONTENTFUL_SPACE_ID: $CONTENTFUL_SPACE_ID"
-          echo "CONTENTFUL_MANAGEMENT_TOKEN: $CONTENTFUL_MANAGEMENT_TOKEN"
+          echo "CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}"
+          echo "CONTENTFUL_MANAGEMENT_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}"
           # Add other variables as needed
 
 
