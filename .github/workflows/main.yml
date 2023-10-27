@@ -12,17 +12,36 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Cache Node Modules
-        uses: actions/cache@v2
+      - name: 'Create env file'
+        run: |
+          echo "${{ secrets.ENV_FILE }}" > .env
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: v18.18.1
+          
+      - name: Get node version
+        id: node
+        run: |
+           echo "version=$(node -v)" >>$GITHUB_OUTPUT
+  
+        if: success()
+            
+      - name: Get node_modules cache
+        uses: actions/cache@v3
+        id: node_modules
         with:
           path: |
-            node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+            **/node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}-${{ steps.node.outputs.version }}
+        if: success()
 
       - name: Install Dependencies
         run: npm ci
+
+      - name: Install Contentful CLI
+        run: npm install -g contentful-cli
 
       - name: Run Prettier
         run: npm run format
@@ -31,10 +50,6 @@ jobs:
       - name: Run ESLint
         run: npm run lint
         if: success()
-
-
-      - name: Export Contentful Data
-        run: contentful space export --space-id ${{ secrets.CONTENTFUL_SPACE_ID }} --management-token ${{ secrets.CONTENTFUL_MANAGEMENT_TOKEN }} --export-dir contentful-backup
 
       - name: Build
         run: npm run build
