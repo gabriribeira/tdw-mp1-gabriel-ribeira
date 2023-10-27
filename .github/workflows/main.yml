@@ -45,7 +45,7 @@ jobs:
 
 
       - name: Export Contentful Data
-        run: contentful space export --space-id ${{ secrets.CONTENTFUL_SPACE_ID }} --management-token ${{ secrets.CONTENTFUL_ACCESS_TOKEN }} --export-dir contentful-backup
+        run: contentful space export --space-id $CONTENTFUL_SPACE_ID --management-token $CONTENTFUL_ACCESS_TOKEN --export-dir contentful-backup
 
       - name: Build
         run: npm run build
