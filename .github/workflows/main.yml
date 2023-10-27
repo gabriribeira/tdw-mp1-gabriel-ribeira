@@ -23,17 +23,6 @@ jobs:
 
       - name: Install Dependencies
         run: npm ci
-        if: success()
-
-      - name: Install Contentful CLI
-        run: npm install -g contentful-cli
-
-      - name: Debug Environment Variables
-        run: |
-          echo "CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}"
-          echo "CONTENTFUL_MANAGEMENT_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}"
-          # Add other variables as needed
-
 
       - name: Run Prettier
         run: npm run format
@@ -45,7 +34,7 @@ jobs:
 
 
       - name: Export Contentful Data
-        run: contentful space export --space-id $CONTENTFUL_SPACE_ID --management-token $CONTENTFUL_ACCESS_TOKEN --export-dir contentful-backup
+        run: contentful space export --space-id ${{ secrets.CONTENTFUL_SPACE_ID }} --management-token ${{ secrets.CONTENTFUL_MANAGEMENT_TOKEN }} --export-dir contentful-backup
 
       - name: Build
         run: npm run build
