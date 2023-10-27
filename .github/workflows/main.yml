@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: 'Create env file'
+      - name: 'Create Env'
         run: |
           echo "${{ secrets.ENV_FILE }}" > .env
 
@@ -22,13 +22,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: v18.18.1
-          
-      - name: Get node version
-        id: node
-        run: |
-           echo "version=$(node -v)" >>$GITHUB_OUTPUT
-  
-        if: success()
             
       - name: Get node_modules cache
         uses: actions/cache@v3
@@ -44,6 +37,10 @@ jobs:
 
       - name: Install Contentful CLI
         run: npm install -g contentful-cli
+
+      - name: Test  
+        run: npm run test
+        if: success()
 
       - name: Run Prettier
         run: npm run format
