@@ -1,12 +1,12 @@
-name: Deploy
+name: Contentful
 
 on:
   repository_dispatch:
         types: [contentful.deploy]
 
 jobs: 
-    Explore-GitHub-Actions:
+    contentful:
         runs-on: ubuntu-latest
         steps:
-         - uses: actions/checkout@v4  
-         - run: echo "Conteúdo atualizado"
+          - name: Contenful Message
+            run: echo "Conteúdo atualizado"
