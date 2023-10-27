@@ -4,6 +4,8 @@ on:
   pull_request:
     branches:
       - main
+  repository_dispatch:
+    types: [contentful.deploy]
 
 jobs:
   Deploy:
