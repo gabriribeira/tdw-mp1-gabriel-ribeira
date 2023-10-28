@@ -62,8 +62,8 @@ security-scan:
   stage: test
   script:
     - npm install -g snyk
-    - snyk auth $SNYK_TOKEN
-    - snyk test --json > snyk_report.json
+    - snyk auth $SNYK_TOKEN || { echo "Failed to authenticate"; exit 1; }
+    - snyk test --json > snyk_report.json || { echo "Snyk test failed"; exit 1; }
   artifacts:
     paths:
       - snyk_report.json
