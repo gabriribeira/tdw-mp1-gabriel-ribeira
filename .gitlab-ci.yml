@@ -28,13 +28,6 @@ contentful:
   script:
     - npm install -g contentful-cli
 
-install-lighthouse:
-  stage: install
-  script:
-    - npm ci
-    - npm install -g lighthouse
-    - npm install -g lighthouse
-
 prettier:
   stage: test
   script:
@@ -69,6 +62,7 @@ deploy:
 
 lighthouse-tests:
   stage: test
+  image: treeder/lighthouse-ci
   script:
     - lighthouse https://tdw-mp1-gabriel-ribeira.tdw-mctw.dev --output json --output-path lighthouse-report.json
   artifacts:
