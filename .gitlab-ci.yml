@@ -24,11 +24,6 @@ install-dependencies:
   script:
     - npm install
 
-dependency-audit:
-  stage: test
-  script:
-    - npm audit
-
 contentful:
   stage: install
   script:
