@@ -1,5 +1,5 @@
 {
-  "private": true, 
+  "private": true,
   "scripts": {
     "dev": "next",
     "build": "next build && next export",
@@ -7,7 +7,9 @@
     "setup": "node ./contentful/setup.js",
     "lint": "next lint",
     "format": "prettier --write .",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "lefthook": "lefthook run pre-commit",
+    "lefthook-pre-push": "lefthook run pre-push"
   },
   "dependencies": {
     "@contentful/app-sdk": "^4.23.1",
@@ -29,6 +31,7 @@
     "eslint-config-next": "13.5.6",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
+    "lefthook": "^1.5.2",
     "postcss": "^8.4.31",
     "prettier": "3.0.3",
     "tailwindcss": "^3.0.15"
