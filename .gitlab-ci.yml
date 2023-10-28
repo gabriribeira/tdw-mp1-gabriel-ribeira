@@ -41,6 +41,7 @@ lint:
 jest:
   stage: test
   script:
+    - npm ci
     - npm install --global jest
     - npm run test
   coverage: '/All files[^|]|[^|]\s+([\d.]+)/'
