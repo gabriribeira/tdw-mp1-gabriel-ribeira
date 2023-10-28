@@ -56,6 +56,11 @@ jobs:
         run: npm run lint
         if: success()
 
+      - name: Set Git Config
+        run: |
+          git config --global user.email "gmrribeira@ua.pt"
+          git config --global user.name "Gabriel Ribeira"
+
       - name: Generate Documentation
         run: npx jsdoc -c jsdoc.json
 
