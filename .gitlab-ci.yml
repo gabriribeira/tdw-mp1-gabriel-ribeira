@@ -28,6 +28,11 @@ contentful:
   script:
     - npm install -g contentful-cli
 
+snyk:
+  stage: install
+  script:
+    - npm install -g snyk
+
 prettier:
   stage: test
   script:
