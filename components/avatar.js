@@ -1,5 +1,11 @@
 import ContentfulImage from "./contentful-image";
 
+/**
+ * This is a JSDoc comment for a function.
+ * @param {string} avatar - The first parameter.
+ * @param {string} picture - The second parameter.
+ */
+
 export default function Avatar({ name, picture }) {
   return (
     <div className="flex items-center">

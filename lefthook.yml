@@ -4,9 +4,6 @@ pre-commit:
     ident:
       glob: "*.{js,ts,jsx,tsx}"
       run: npm run format -- --write {staged_files} && git add {staged_files}
-    lint:
-      glob: "*.{js,ts,jsx,tsx}"
-      run: npm run lint -- {staged_files} && git add {staged_files}
     test:
       glob: "*.{js,ts,jsx,tsx}"
       run: npm run test
@@ -20,7 +17,3 @@ pre-push:
     test:
       glob: "*.{js,ts,jsx,tsx}"
       run: npm run test
-
-
-
-     

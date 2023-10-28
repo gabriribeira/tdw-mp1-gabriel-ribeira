@@ -11,7 +11,7 @@ on:
   repository_dispatch:
     types: [contentful.deploy]
   schedule:
-    - cron: '0 0 * * *'
+    - cron: "0 0 * * *"
 
 jobs:
   Deploy:
@@ -19,8 +19,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
- 
-      - name: 'Create Env'
+
+      - name: "Create Env"
         run: |
           echo "${{ secrets.ENV_FILE }}" > .env
 
@@ -28,7 +28,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: v18.18.1
-            
+
       - name: Get node_modules cache
         uses: actions/cache@v3
         id: node_modules
@@ -44,7 +44,7 @@ jobs:
       - name: Install Contentful CLI
         run: npm install -g contentful-cli
 
-      - name: Test  
+      - name: Test
         run: npm run test
         if: success()
 
@@ -55,6 +55,17 @@ jobs:
       - name: Run ESLint
         run: npm run lint
         if: success()
+
+      - name: Generate Documentation
+        run: npx jsdoc -c jsdoc.json
+
+      - name: Configure GitHub Pages
+        run: npx gh-pages -d docs
+        if: github.ref == 'refs/heads/main' # Only deploy on main branch
+
+      - name: Push to GitHub Pages
+        run: git push origin gh-pages
+        if: github.ref == 'refs/heads/main'
 
       - name: Build
         run: npm run build
