@@ -13,8 +13,10 @@ variables:
 
 cache:
   key: "$CI_COMMIT_REF_NAME"
-  paths:
-    - node_modules/
+    files:          
+      - package-lock.json  
+    paths:
+      - node_modules/
 
 install-dependencies:
   stage: install
@@ -29,7 +31,6 @@ contentful:
 prettier:
   stage: test
   script:
-    - npm install --global jest
     - npm run format
 
 lint:
@@ -40,6 +41,7 @@ lint:
 jest:
   stage: test
   script:
+    - npm install --global jest
     - npm run test
   coverage: '/All files[^|]|[^|]\s+([\d.]+)/'
   cache:
