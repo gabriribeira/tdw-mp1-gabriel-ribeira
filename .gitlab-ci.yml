@@ -12,11 +12,9 @@ variables:
   TRANSFER_METER_FREQUENCY: 5s
 
 cache:
-  - key:     
-      files:          
-      - package-lock.json    
-    paths:      
-      - node_modules/
+  key: "$CI_COMMIT_REF_NAME"
+  paths:
+    - node_modules/
 
 install-dependencies:
   stage: install
@@ -36,19 +34,19 @@ prettier:
 lint:
   stage: test
   script:
-    - npm rub lint
+    - npm run lint
 
 jest:
   stage: test
   script:
     - npm run test
-  coverage: /All files[^|]|[^|]\s+([\d.]+)/
+  coverage: '/All files[^|]|[^|]\s+([\d.]+)/'
   cache:
     paths:
-     - coverage/
+      - coverage/
   artifacts:
-    paths: 
-     - coverage/
+    paths:
+      - coverage/
 
 deploy:
   stage: deploy
@@ -56,5 +54,4 @@ deploy:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
   script:
     - npm run build
-    - npx netlify-cli deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod 
-  
+    - npx netlify-cli deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod
