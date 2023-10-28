@@ -6,4 +6,3 @@ Mini-Projeto TDW Gabriel Ribeira
 [![Coverage Status](https://img.shields.io/badge/coverage-80%25-brightgreen)](https://app.netlify.com/sites/venerable-panda-26e8db/coverage-report)
 [![Jest Snapshot Tests](https://img.shields.io/badge/jest%20snapshot-passing-brightgreen)](https://app.netlify.com/sites/venerable-panda-26e8db/snapshots-report)
 [![Known Vulnerabilities](https://snyk.io/test/github/gabriribeira/tdw-mp1-gabriel-ribeira/badge.svg)](https://snyk.io/test/github/gabriribeira/tdw-mp1-gabriel-ribeira)
-

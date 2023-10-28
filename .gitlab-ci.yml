@@ -64,8 +64,7 @@ security-scan:
     - snyk auth $SNYK_TOKEN
     - snyk test --json > snyk_report.json
   artifacts:
-    reports:
-      snyk: snyk_report.json
+    snyk_report.json
 
 deploy:
   stage: deploy
