@@ -52,6 +52,16 @@ jest:
     paths:
       - coverage/
 
+security-scan:
+  stage: test
+  script:
+    - npm install -g snyk
+    - snyk auth $SNYK_TOKEN
+    - snyk test --json > snyk_report.json
+  artifacts:
+    reports:
+      snyk: snyk_report.json
+
 deploy:
   stage: deploy
   rules:
@@ -59,11 +69,3 @@ deploy:
   script:
     - npm run build
     - npx netlify-cli deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod
-
-lighthouse-tests:
-  stage: test
-  script:
-    - docker run --rm -v $PWD:/home/chrome/reports lighthouse https://tdw-mp1-gabriel-ribeira.tdw-mctw.dev --output json --output-path reports/lighthouse-report.json
-  artifacts:
-    paths:
-      - reports/lighthouse-report.json
