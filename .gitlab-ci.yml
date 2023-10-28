@@ -14,8 +14,10 @@ variables:
 
 schedules:
   - cron: "32 14 * * *"
-    only:
-      - schedules
+  jobs:
+      - install
+      - test
+      - deploy
 
 cache:
   - key:     
