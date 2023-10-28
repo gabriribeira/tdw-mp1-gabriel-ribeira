@@ -65,7 +65,7 @@ jobs:
         run: npx jsdoc -c jsdoc.json
 
       - name: Configure GitHub Pages
-        run: npx gh-pages -d docs
+        run: npx gh-pages -d docs -t ${{ secrets.PAT }}
         if: github.ref == 'refs/heads/main' # Only deploy on main branch
 
       - name: Push to GitHub Pages
