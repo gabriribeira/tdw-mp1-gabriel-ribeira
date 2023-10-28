@@ -10,7 +10,7 @@ on:
   repository_dispatch:
     types: [contentful.deploy]
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '20 14 * * *'
 
 jobs:
   Deploy:
