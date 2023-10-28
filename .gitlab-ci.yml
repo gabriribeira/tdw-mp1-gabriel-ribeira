@@ -20,6 +20,7 @@ install-dependencies:
   stage: install
   script:
     - npm install
+    - npm install --global jest
 
 contentful:
   stage: install
