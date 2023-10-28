@@ -10,6 +10,12 @@ variables:
   ARTIFACT_COMPRESSION_LEVEL: fastest
   CACHE_COMPRESSION_LEVEL: fastest
   TRANSFER_METER_FREQUENCY: 5s
+  GITLAB_TOKEN: $CI_JOB_TOKEN
+
+schedules:
+  - cron: "32 14 * * *"
+    only:
+      - schedules
 
 cache:
   - key:     
@@ -59,3 +65,9 @@ deploy:
   script:
     - npm run build
     - npx netlify-cli deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod
+
+scheduled_job:
+  script:
+    - curl --request POST --form "token=${CI_JOB_TOKEN}" --form ref=main https://gitlab.com/api/v4/projects/51653917/trigger/pipeline
+  only:
+    - schedules
