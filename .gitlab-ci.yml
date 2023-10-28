@@ -20,7 +20,6 @@ install-dependencies:
   stage: install
   script:
     - npm install
-    - npm install --global jest 
 
 contentful:
   stage: install
@@ -30,6 +29,7 @@ contentful:
 prettier:
   stage: test
   script:
+    - npm install --global jest
     - npm run format
 
 lint:
