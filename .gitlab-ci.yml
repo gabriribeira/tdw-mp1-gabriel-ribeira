@@ -31,6 +31,8 @@ contentful:
 install-lighthouse:
   stage: install
   script:
+    - npm ci
+    - npm install -g lighthouse
     - npm install -g lighthouse
 
 prettier:
