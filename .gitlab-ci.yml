@@ -62,9 +62,8 @@ deploy:
 
 lighthouse-tests:
   stage: test
-  image: treeder/lighthouse-ci
   script:
-    - lighthouse https://tdw-mp1-gabriel-ribeira.tdw-mctw.dev --output json --output-path lighthouse-report.json
+    - docker run --rm -v $PWD:/home/chrome/reports lighthouse https://tdw-mp1-gabriel-ribeira.tdw-mctw.dev --output json --output-path reports/lighthouse-report.json
   artifacts:
     paths:
-      - lighthouse-report.json
+      - reports/lighthouse-report.json
