@@ -12,11 +12,11 @@ variables:
   TRANSFER_METER_FREQUENCY: 5s
 
 cache:
-  key: "$CI_COMMIT_REF_NAME"
-    files:          
-      - package-lock.json  
-  paths:
-    - node_modules/
+  - key:     
+      files:          
+      - package-lock.json    
+    paths:      
+      - node_modules/
 
 install-dependencies:
   stage: install
