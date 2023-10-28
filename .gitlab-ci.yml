@@ -28,6 +28,11 @@ contentful:
   script:
     - npm install -g contentful-cli
 
+install-lighthouse:
+  stage: install
+  script:
+    - npm install -g lighthouse
+
 prettier:
   stage: test
   script:
@@ -59,3 +64,11 @@ deploy:
   script:
     - npm run build
     - npx netlify-cli deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod
+
+lighthouse-tests:
+  stage: test
+  script:
+    - lighthouse https://tdw-mp1-gabriel-ribeira.tdw-mctw.dev --output json --output-path lighthouse-report.json
+  artifacts:
+    paths:
+      - lighthouse-report.json
