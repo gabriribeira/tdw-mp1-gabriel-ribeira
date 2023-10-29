@@ -10,7 +10,6 @@ variables:
   ARTIFACT_COMPRESSION_LEVEL: fastest
   CACHE_COMPRESSION_LEVEL: fastest
   TRANSFER_METER_FREQUENCY: 5s
-  SNYK_TOKEN: $SNYK_TOKEN
 
 cache:
   - key:     
