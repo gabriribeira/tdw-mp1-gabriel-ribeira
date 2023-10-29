@@ -8,7 +8,8 @@ pre-commit:
       glob: "*.{js,ts,jsx,tsx}"
       run: npm run test
     docs:
-      run: npx jsdoc -c jsdoc.json
+      glob: "components/*.js"
+      run: npx jsdoc -c jsdoc.json && git add docs
 
 pre-push:
   parallel: true
