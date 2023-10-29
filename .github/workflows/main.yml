@@ -23,11 +23,13 @@ jobs:
       - name: "Create Env"
         run: |
           echo "${{ secrets.ENV_FILE }}" > .env
+        if: success()
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: v18.18.1
+        if: success()
 
       - name: Get node_modules cache
         uses: actions/cache@v3
@@ -40,9 +42,11 @@ jobs:
 
       - name: Install Dependencies
         run: npm ci
+        if: success()
 
       - name: Install Contentful CLI
         run: npm install -g contentful-cli
+        if: success()
 
       - name: Test
         run: npm run test
