@@ -17,7 +17,7 @@
     "classnames": "2.3.1",
     "contentful": "^10.6.5",
     "date-fns": "2.28.0",
-    "netlify-cli": "^16.9.2",
+    "netlify-cli": "^16.9.3",
     "next": "latest",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
